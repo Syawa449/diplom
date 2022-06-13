@@ -85,6 +85,6 @@ Route::get('/contact-us', [App\Http\Controllers\ContactController::class, 'view'
 Route::get('/admin', [App\Http\Controllers\ContactController::class, 'admin'])->middleware(['role:admin'])->name('update');
 Route::post('/admin/update', [App\Http\Controllers\ContactController::class, 'updateMessageSubmit'])->middleware(['role:admin'])->name('updateMessageSubmit');
 
-
+// dasdsadsa
 
 require __DIR__.'/auth.php';
