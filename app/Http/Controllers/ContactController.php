@@ -33,13 +33,16 @@ class ContactController extends Controller
         return view('magazin/contact-us', ['data' => $data ]);
     }
 
-    public function deleteMessage($id) {
-        Contact::findOrFail($id)->delete();
-        return redirect()->route('magazin/contact-us')->with('success', 'Сообщение удалено');
-    }
+
     public function view()
     { 
         $data = Contact::all();
         return view('magazin/contact-us')->with('data',$data);
+    }
+
+    public function admin()
+    { 
+        $data = Contact::all();
+        return view('magazin/test',['data' => $data ]);
     }
 }

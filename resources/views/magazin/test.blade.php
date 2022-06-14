@@ -6,7 +6,7 @@
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
+					<h2 class="title text-center">User Messages</h2>    			    				    				
 					<div id="gmap" class="contact-map">
 
 					<div class="py-12" style="flex-direction:row;">
@@ -20,6 +20,7 @@
 					<p class="card-text info">{{ $el->email }}</p>
 					<p class="card-text">{{ $el->subject }}</p>
                     <h5 class="card-title">{{$el->info}}</h5>
+					<a href="{{route('delete', $el->id)}}"><button type="submit" class="btn btn-warning">Удалить</button></a> 
                     
 					
 
@@ -34,25 +35,65 @@
 				</div>			 		
 			</div>    	
     		<div class="row">  	
-	    		<div class="col-sm-8">
+	    		<div class="container">
 	    			<div class="contact-form">
-	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<h2 class="title text-center">Add new product</h2>
 	    				<div class="status alert alert-success" style="display: none"></div>
-				    	<form id="main-contact-form" action="{{route ('zayavka') }}" 	 class="contact-form row" name="contact-form" method="post">
+
+                        <!-- <form id="main-contact-form" action="{{route ('sozdatproduct') }}" 	 class="contact-form row" name="contact-form" method="post" enctype="multipart/form-data">
 						@csrf
 				            <div class="form-group col-md-6">
-				                <input type="text" name="name" class="form-control" required="required" placeholder="Name" id="name">
+				                <input type="text" name="title" class="form-control" required="required" placeholder="title" id="title">
 				            </div>
 				            <div class="form-group col-md-6">
-				                <input type="email" name="email" class="form-control" required="required" placeholder="Email" id="email">
+				                <input type="text" name="cost" class="form-control" required="required" placeholder="cost" id="cost">
 				            </div>
 				            <div class="form-group col-md-12">
-				                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject" id="subject">
+				                <input type="text" name="instock" class="form-control" required="required" placeholder="instock" id="instock">
+				            </div>
+                            <div class="form-group col-md-12">
+				                <input type="text" name="instockboolean" class="form-control" required="required" placeholder="instockboolean" id="instockboolean">
+				            </div>
+                            <div class="form-group col-md-12">
+				                <input type="text" name="condition" class="form-control" required="required" placeholder="condition" id="condition">
 				            </div>
 				            <div class="form-group col-md-12">
-				                <textarea name="info" id="info" required="required" class="form-control" rows="8" placeholder="Your Message Here" ></textarea>
+				                <textarea name="brand" id="brand" required="required" class="form-control" rows="8" placeholder="brand" ></textarea>
 				            </div> 
 				            <div class="form-group col-md-12">
+                                <input type="file" name="img" id="img">
+				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+							</div>
+                            
+						</div>
+
+				        </form> -->
+				    	<form id="main-contact-form" action="{{route ('sozdatproduct') }}" 	 class="contact-form row" name="contact-form" method="post" enctype="multipart/form-data">
+						@csrf
+				            <div class="form-group col-md-6">
+				                <input type="text" name="title" class="form-control" required="required" placeholder="title" id="title">
+				            </div>
+                            <div class="form-group col-md-6">
+				                <input type="text" name="cost" class="form-control" required="required" placeholder="cost" id="cost">
+				            </div>
+				            <div class="form-group col-md-6">
+				                <input type="text" name="instock" class="form-control" required="required" placeholder="instock" id="instock">
+				            </div>
+				            <div class="form-group col-md-12">
+                            <select name="instockboolean" id="instockboolean">
+                                <option>0</option>
+                                <option>1</option>
+                                
+                                </select>
+				            </div>
+                            <div class="form-group col-md-6">
+				                <input type="text" name="condition" class="form-control" required="required" placeholder="condition" id="condition">
+				            </div>
+                            <div class="form-group col-md-6">
+				                <input type="text" name="brand" class="form-control" required="required" placeholder="brand" id="brand">
+				            </div>
+				            <div class="form-group col-md-12">
+                                <input type="file" name="img" id="img">
 				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
 							</div>
 						</div>
@@ -60,36 +101,7 @@
 				        </form>
 
 	    		</div>
-	    		<div class="col-sm-4">
-	    			<div class="contact-info">
-	    				<h2 class="title text-center">Contact Info</h2>
-	    				<address>
-	    					<p>E-Shopper Inc.</p>
-							<p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-							<p>Newyork USA</p>
-							<p>Mobile: +2346 17 38 93</p>
-							<p>Fax: 1-714-252-0026</p>
-							<p>Email: info@e-shopper.com</p>
-	    				</address>
-	    				<div class="social-networks">
-	    					<h2 class="title text-center">Social Networking</h2>
-							<ul>
-								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-youtube"></i></a>
-								</li>
-							</ul>
-	    				</div>
-	    			</div>
-    			</div>    			
+			
 	    	</div>  
     	</div>	
     </div><!--/#contact-page-->

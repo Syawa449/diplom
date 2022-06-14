@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ContactController;
 use GuzzleHttp\Promise\Create;
 
@@ -19,9 +21,6 @@ use GuzzleHttp\Promise\Create;
 Route::get('/', function () {
     return view('magazin/index');
 });
-Route::get('/ProductDetails', function () {
-    return view('magazin/product-details');
-})->name('magazin/product details');
 
 Route::get('/Blog', function () {
     return view('magazin/blog');
@@ -30,12 +29,6 @@ Route::get('/Blog', function () {
 Route::get('/Blogsingle', function () {
     return view('magazin/blog-single');
 })->name('magazin/blogsingle');
-
-
-
-Route::get('/index', function () {
-    return view('magazin/index');
-})->name('magazin/index');
 
 Route::get('/cart', function () {
     return view('magazin/cart');
@@ -57,34 +50,27 @@ Route::get('/account', function () {
     return view('magazin/account');
 })->middleware(['auth'])->name('magazin/account');
 
-
 Route::get('/login', function () {
     return view('auth/login');
 })->name('login');
 
-Route::get('/admin/contact', function () {
-    return view('magazin/admin-contact');
-})->name('admin-contact');
-
-
+Route::get('/test', function () {
+    return view('magazin/test');
+})->name('magazin/test');
 
 Route::get('/register', function () {
     return view('auth/register');
 })->name('register');
 
+Route::get('/ProductDetails', [App\Http\Controllers\ProductsController::class, 'productsdetails'])->name('magazin/product details');
 Route::post('/index', [App\Http\Controllers\ContactController::class, 'create'])->name('zayavka');
-Route::post('/admin/contact', [App\Http\Controllers\ContactController::class, 'admincontact'])->name('admin-contact');
-
+Route::get('/admin', [App\Http\Controllers\ContactController::class, 'admin'])->middleware(['role:admin'])->name('magazin/accountadmin');
+Route::get('/index', [App\Http\Controllers\ProductsController::class, 'index'])->name('magazin/index');
+Route::get('/shop', [App\Http\Controllers\ProductsController::class, 'shop'])->name('magazin/shop');
 Route::get('/kabinet', [App\Http\Controllers\ContactController::class, 'showByUser'])->name('kabinet');
-
-
-
-Route::get('/contactus', [App\Http\Controllers\ContactController::class, 'deleteMessage'])->middleware(['role:admin'])->name('delete');
-
+Route::get('/admin/{id}', [App\Http\Controllers\AdminController::class, 'deleteMessage'])->middleware(['role:admin'])->name('delete');
 Route::get('/contact-us', [App\Http\Controllers\ContactController::class, 'view'])->name('magazin/contact-us');
-Route::get('/admin', [App\Http\Controllers\ContactController::class, 'admin'])->middleware(['role:admin'])->name('update');
 Route::post('/admin/update', [App\Http\Controllers\ContactController::class, 'updateMessageSubmit'])->middleware(['role:admin'])->name('updateMessageSubmit');
-
-// dasdsadsa
+Route::post('/adminka', [App\Http\Controllers\ProductsController::class, 'createe'])->name('sozdatproduct');
 
 require __DIR__.'/auth.php';
