@@ -19,7 +19,7 @@ use GuzzleHttp\Promise\Create;
 */
 
 Route::get('/', function () {
-    return view('magazin/index');
+    return view('magazin/checkout');
 });
 
 Route::get('/Blog', function () {
